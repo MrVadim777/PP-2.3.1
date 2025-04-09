@@ -1,19 +1,18 @@
-package org.example.dao.impl;
+package org.example.dao;
 
-import org.example.dao.UserDao;
 import org.example.model.User;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Component
+@Repository
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public User find(Long id) {

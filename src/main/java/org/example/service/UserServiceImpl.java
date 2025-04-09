@@ -1,8 +1,7 @@
-package org.example.service.impl;
+package org.example.service;
 
 import org.example.dao.UserDao;
 import org.example.model.User;
-import org.example.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
