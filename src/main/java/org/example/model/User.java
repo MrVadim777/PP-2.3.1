@@ -1,5 +1,9 @@
 package org.example.model;
 
+import org.example.validation.group.EmailGroup;
+import org.example.validation.group.NotBlankGroup;
+import org.example.validation.group.SizeGroup;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,22 +18,19 @@ public class User {
     private Long id;
 
     @Column(name = "email")
-    @Size(min = 2, message = "Минимальная длинна email 2 символов")
-    @Size(max = 50, message = "Максимальная длинна email 50 символов")
-    @Email(message = "Поле не соответствует структуре email")
-    @NotBlank(message = "Поле email не может быть пустым")
+    @NotBlank(message = "Email не может быть пустым", groups = NotBlankGroup.class)
+    @Size(min = 2, max = 50, message = "Email должен быть от 2 до 50 символов", groups = SizeGroup.class)
+    @Email(message = "Поле не соответствует структуре email", groups = EmailGroup.class)
     private String email;
 
     @Column(name = "name")
-    @Size(min = 2, message = "Минимальная длинна имени 2 символа")
-    @Size(max = 64, message = "Максимальная длинна имени 64 символов")
-    @NotBlank(message = "Поле имени не может быть пустым")
+    @NotBlank(message = "Имя не может быть пустым", groups = NotBlankGroup.class)
+    @Size(min = 2, max = 64, message = "Имя должно быть от 2 до 64 символов", groups = SizeGroup.class)
     private String name;
 
     @Column(name = "last_name")
-    @Size(min = 2, message = "Минимальная длинна фамилии 2 символа")
-    @Size(max = 64, message = "Максимальная длинна фамилии 64 символов")
-    @NotBlank(message = "Поле фамилии не может быть пустым")
+    @NotBlank(message = "Фамилия не может быть пустой", groups = NotBlankGroup.class)
+    @Size(min = 2, max = 64, message = "Фамилия должна быть от 2 до 64 символов", groups = SizeGroup.class)
     private String lastName;
 
     public User() {
